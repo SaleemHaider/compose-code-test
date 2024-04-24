@@ -3,6 +3,7 @@ package com.example.composecodetest.screens
 import android.annotation.SuppressLint
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -47,7 +48,18 @@ fun HomeScreen(onClick: (medicine:Medicine) -> Unit) {
 
     val medicines=homeViewModel.medicines.collectAsState()
     Column(modifier = Modifier.padding(16.dp)) {
-        Text(text = "Hi, ${homeViewModel.savedStateHandle.get<String>("email")} ${CurrentTime()}")
+        Box(
+            modifier = Modifier
+                .padding(8.dp)
+                .border(
+                    width = 1.dp,
+                    color = Color.Black,
+                    shape = RoundedCornerShape(4.dp)
+                )
+        ) {
+            Text(text = "Hi, ${homeViewModel.savedStateHandle.get<String>("email")} ${CurrentTime()}", modifier = Modifier.padding(4.dp
+            ))
+        }
         LazyVerticalGrid(columns = GridCells.Fixed(1)) {
             items(medicines.value?.medicines.orEmpty()) {
                 MyCard(it, onClick)
@@ -62,7 +74,6 @@ fun MyCard(medicine: Medicine,onClick: (medicine:Medicine) -> Unit) {
     Card(
         modifier = Modifier
             .padding(16.dp)
-
             .height(150.dp)
             .clip(RoundedCornerShape(8.dp))
             .border(1.dp, Color(0xFFEEEEEE))

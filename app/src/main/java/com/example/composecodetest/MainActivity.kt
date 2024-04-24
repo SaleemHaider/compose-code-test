@@ -3,19 +3,16 @@ package com.example.composecodetest
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.contentColorFor
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.navigation.NavController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -28,7 +25,6 @@ import com.example.composecodetest.screens.MedicineDetailScreen
 import com.example.composecodetest.ui.theme.ComposeCodeTestTheme
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.reflect.typeOf
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -41,7 +37,9 @@ class MainActivity : ComponentActivity() {
                 topBar = {
                     TopAppBar(title = { 
                         Text(text = "Compose Code Test")
-                    },Modifier.background(Color.Blue))
+                    },   colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color(0xFF348fd9),
+                        titleContentColor = Color.White)
+                    )
                 }
             ){
                 Box(modifier = Modifier.padding(it)) {
